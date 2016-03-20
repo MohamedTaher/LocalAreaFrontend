@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".Login"
+    android:background="#e6e6e6"
+    android:id="@+id/z">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login to your account"
+        android:layout_marginTop="15dp"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="#404040"
+        android:id="@+id/textView"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/imageView2"
+        android:layout_below="@+id/textView"
+        android:src="@drawable/username_icon"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/imageView3"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/password_icon" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:inputType="textPersonName"
+        android:layout_marginLeft="15dp"
+        android:hint="Username"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:ems="10"
+        android:id="@+id/username_signup"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/imageView2" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:inputType="textPassword"
+        android:hint="********"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:ems="10"
+        android:id="@+id/password_signup"
+        android:layout_alignBottom="@+id/imageView3"
+        android:layout_alignStart="@+id/username_signup"
+        android:layout_alignEnd="@+id/username_signup" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Login"
+        android:textStyle="bold"
+        android:textColor="#404040"
+        android:textSize="20dp"
+        android:id="@+id/loginButton"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:text="Signup"
+        android:textStyle="bold"
+        android:textColor="#404040"
+        android:textSize="20dp"
+        android:id="@+id/signupButton"
+        android:layout_below="@+id/loginButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/loginButton" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="5dp"
+        android:text="Forget Password?"
+        android:textColor="#404040"
+        android:id="@+id/forgetButton"
+        android:layout_below="@+id/signupButton"
+        android:layout_alignEnd="@+id/signupButton"
+        android:layout_alignParentStart="true"
+        android:background="#e6e6e6"
+        android:layout_alignParentBottom="true" />
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/location"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
