@@ -30,7 +30,7 @@ public class Signup extends Activity {
         //setSupportActionBar(toolbar);
 
         username = (EditText) findViewById(R.id.username_signup);
-        email = (EditText) findViewById(R.id.password_signup);
+        email = (EditText) findViewById(R.id.email_signup);
         password = (EditText) findViewById(R.id.password_signup);
         repassword = (EditText) findViewById(R.id.repassword_signup);
 
