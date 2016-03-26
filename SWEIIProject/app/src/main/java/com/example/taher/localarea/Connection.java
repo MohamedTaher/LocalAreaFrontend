@@ -30,6 +30,9 @@ public class Connection extends AsyncTask<String, String, String> {
 
     /**
      * constructor
+     * This constructor takes the data to be sent to the service using a hashmap, sends the data through
+     * doInBackground, and then calls the connectionPostListener methond "doSomething" implemented by
+     * the user to process the result of the service call.
      */
     public Connection(HashMap<String, String> data, ConnectionPostListener connectionPostListener) {
         mData = data;
@@ -38,6 +41,7 @@ public class Connection extends AsyncTask<String, String, String> {
 
     /**
      * background
+     * This is where you call the service and send your parameters and gt response.
      */
     @Override
     protected String doInBackground(String... params) {
@@ -74,6 +78,7 @@ public class Connection extends AsyncTask<String, String, String> {
 
     /**
      * on getting result
+     * this will call the implemented function in the interface to process the returned data.
      */
     @Override
     protected void onPostExecute(String result) {

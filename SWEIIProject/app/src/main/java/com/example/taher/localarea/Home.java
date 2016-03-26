@@ -20,7 +20,7 @@ import java.util.concurrent.ExecutionException;
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    UserModel user = null;
+    public static UserModel user = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
