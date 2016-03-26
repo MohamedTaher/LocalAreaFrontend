@@ -19,6 +19,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
  * Created by taher on 21/03/16.
@@ -34,6 +35,7 @@ public class AnotherAccountFragment extends Fragment {
     private FragmentManager fm;
     private MapFragment map;
     private MapFragment frag;
+    private GoogleMap g_map;
     private final int[] MAP_TYPES = { GoogleMap.MAP_TYPE_SATELLITE,
             GoogleMap.MAP_TYPE_NORMAL,
             GoogleMap.MAP_TYPE_HYBRID,
@@ -54,6 +56,8 @@ public class AnotherAccountFragment extends Fragment {
         context = getContext();
         fm = getActivity().getFragmentManager();
         map = (MapFragment) fm.findFragmentById(R.id.mapfragment);
+        g_map = ((MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.mapfragment)).getMap();
+        g_map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 //        FragmentTransaction ft = fm.beginTransaction();
 //        ft.hide(map);
 //        ft.commit();
@@ -64,8 +68,9 @@ public class AnotherAccountFragment extends Fragment {
                 //get last coordinates first
                 final LatLng lastLocation = new LatLng(wanted.getLat(), wanted.getLong());
                 //intialize the map with the coordinates
-                CameraUpdate camUpdate = CameraUpdateFactory.newLatLng(lastLocation);
-                GoogleMap g_map = ((MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.mapfragment)).getMap();
+                CameraUpdate camUpdate = CameraUpdateFactory.newLatLngZoom(lastLocation, 14);
+                g_map.addMarker(new MarkerOptions().position(lastLocation).title(wanted.getName()+" was here!"));
+                g_map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
                 g_map.animateCamera(camUpdate);
                 //make the map visible
                 FragmentManager fm = getActivity().getFragmentManager();
