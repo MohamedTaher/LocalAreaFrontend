@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -48,14 +49,7 @@ public class gmap
 
 
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootview = inflater.inflate(R.layout.gmap_fragment, container, false);
-        fm = getActivity().getFragmentManager();
-        map = ((MapFragment) fm.findFragmentById(R.id.mapfragment)).getMap();
-        return rootview;
-    }
+
 
     @Override
     public void onConnected(Bundle bundle) {
