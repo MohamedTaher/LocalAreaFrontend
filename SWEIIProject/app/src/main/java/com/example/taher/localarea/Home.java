@@ -20,7 +20,7 @@ import java.util.concurrent.ExecutionException;
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    UserModel user = null;
+    public UserModel user = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,15 +110,20 @@ public class Home extends AppCompatActivity
             replaceFragment(user.getName(), new AccountFragment());
 
         } else if (id == R.id.nav_followers) {
-            setTitle("Followers");
+            FollowersFragment search = new FollowersFragment();
+            search.setSorceUser(user);
+            search.setParent(this);
+            replaceFragment("Followers", search);
 
         } else if (id == R.id.nav_places) {
 
             setTitle("Places");
 
         } else if (id == R.id.nav_search) {
-            setTitle("Search");
-
+            SearchFragment search = new SearchFragment();
+            search.setSorceUser(user);
+            search.setParent(this);
+            replaceFragment("Search", search);
 
         } else if (id == R.id.nav_single) {
 

@@ -14,6 +14,14 @@ import com.example.taher.localarea.R;
  */
 public class AnotherAccountFragment extends Fragment {
     View rootview;
+    UserModel user = null;
+    UserModel wanted = null;
+
+    public void setUser(UserModel user, UserModel wanted) {
+        this.user = user;
+        this.wanted = wanted;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

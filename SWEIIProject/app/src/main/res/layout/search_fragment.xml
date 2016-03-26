@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+
+    <EditText
+        android:id="@+id/searchText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:gravity="center_vertical|center"
+        android:hint="Search" />
+
+    <RadioButton
+        android:id="@+id/nameRadio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/searchText"
+        android:layout_below="@+id/searchText"
+        android:text="Name" />
+
+    <RadioButton
+        android:id="@+id/placeRadio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/nameRadio"
+        android:layout_alignBottom="@+id/nameRadio"
+        android:layout_centerHorizontal="true"
+        android:text="place" />
+
+    <RadioButton
+        android:id="@+id/brandRadio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Brand "
+        android:layout_below="@+id/searchText"
+        android:layout_alignEnd="@+id/searchText" />
+
+    <ListView
+        android:id="@+id/searchList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchButton" >
+
+    </ListView>
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/nameRadio"
+        android:text="Search"
+        android:layout_alignEnd="@+id/brandRadio"
+        android:layout_alignStart="@+id/nameRadio" />
+
+</RelativeLayout>
