@@ -12,4 +12,7 @@ public abstract class Constants {
     public static final String MAPKEY2 = "AIzaSyA4rUdwwkjeUZViuXiRfOMkWY1uA1L3xVY";
     public static final String SEARCH = "http://wep-localarea.rhcloud.com/FCISquare/rest/getuserbyname";
     public static final String getFollowers = "http://wep-localarea.rhcloud.com/FCISquare/rest/getfollwers";
+    public static final String followOrNo = "http://wep-localarea.rhcloud.com/FCISquare/rest/checkFollow";
+    public static final String follow="http://wep-localarea.rhcloud.com/FCISquare/rest/followUser";
+    public static final String unfollow="http://wep-localarea.rhcloud.com/FCISquare/rest/unfollowUser";
 }
