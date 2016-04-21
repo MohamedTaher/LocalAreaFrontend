@@ -15,4 +15,10 @@ public abstract class Constants {
     public static final String followOrNo = "http://wep-localarea.rhcloud.com/FCISquare/rest/checkFollow";
     public static final String follow="http://wep-localarea.rhcloud.com/FCISquare/rest/followUser";
     public static final String unfollow="http://wep-localarea.rhcloud.com/FCISquare/rest/unfollowUser";
+
+    public static final String listOfCheckins = "http://wep-localarea.rhcloud.com/FCISquare/rest/getCheckinsFromUser";
+    public static final String like = "http://wep-localarea.rhcloud.com/FCISquare/rest/Like";
+    public static final String unlike = "http://wep-localarea.rhcloud.com/FCISquare/rest/UnLike";
+
+
 }

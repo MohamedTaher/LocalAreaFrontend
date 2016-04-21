@@ -1,6 +1,7 @@
 package com.example.taher.localarea;
 
 
+
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,14 +14,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.support.v4.app.FragmentManager;
 import android.widget.Toast;
 
+import java.util.Stack;
 import java.util.concurrent.ExecutionException;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static UserModel user = null;
+    Fragment fragment, preFragment;
+    String title = "",pretitle = "";
+    Stack<Fragment> stack = new Stack<Fragment>();
+    Stack<String> titles = new Stack<String>();
 
 
     @Override
@@ -52,6 +59,13 @@ public class Home extends AppCompatActivity
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.mainFrame, new HomeFragment());
+
+
+        fragment = new HomeFragment();
+
+        title = "Home";
+
+
         ft.commit();
 
 
@@ -59,12 +73,19 @@ public class Home extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+/*
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-        }
+        }*/
+        if (!stack.empty()){
+        Fragment temp = stack.pop();
+        if (temp != null)
+        replaceFragment(titles.pop(),temp);
+        } else
+            super.onBackPressed();
     }
 
     @Override
@@ -102,35 +123,65 @@ public class Home extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        Fragment fragment = null;
 
         if (id == R.id.nav_home){
-            replaceFragment("Home", new HomeFragment());
+            preFragment = fragment;
+            stack.add(preFragment);
+            fragment = new HomeFragment();
+
+            pretitle = title;
+            titles.add(pretitle);
+            title = "Home";
+            replaceFragment("Home", fragment);
 
         }else if (id == R.id.nav_username) {
-            replaceFragment(user.getName(), new AccountFragment());
+            preFragment = fragment;
+            stack.add(preFragment);
+            fragment = new AccountFragment();
+
+            pretitle = title;
+            titles.add(pretitle);
+            title = user.getName();
+
+            replaceFragment(user.getName(), fragment);
 
         } else if (id == R.id.nav_followers) {
             FollowersFragment search = new FollowersFragment();
             search.setSorceUser(user);
             search.setParent(this);
+            preFragment = fragment;
+            stack.add(preFragment);
+            fragment = search;
+
+            pretitle = title;
+            titles.add(pretitle);
+            title = "Followers";
+
             replaceFragment("Followers", search);
-
-        } else if (id == R.id.nav_places) {
-
-            setTitle("Places");
 
         } else if (id == R.id.nav_search) {
             SearchFragment search = new SearchFragment();
             search.setSorceUser(user);
             search.setParent(this);
+            preFragment = fragment;
+            stack.add(preFragment);
+            fragment = search;
+
+            pretitle = title;
+            titles.add(pretitle);
+            title = "Search";
+
             replaceFragment("Search", search);
 
-        } else if (id == R.id.nav_single) {
+        } else if (id == R.id.nav_single) { //add new place
 
-        } else if (id == R.id.nav_group) {
+
+
+        } else if (id == R.id.nav_group) { // my places
 
         } else if (id == R.id.nav_logout) {
+            stack.clear();
+            titles.clear();
             Intent intent = new Intent(this, Login.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivityForResult(intent, 0);
