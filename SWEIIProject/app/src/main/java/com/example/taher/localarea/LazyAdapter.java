@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by taher on 20/04/16.
  */
@@ -24,6 +28,8 @@ public class LazyAdapter extends BaseAdapter {
     private Fragment fragment;
     private ArrayList<HashMap<String, String>> data;
     private static LayoutInflater inflater=null;
+    String uID;
+    String checkinID;
     //public ImageLoader imageLoader;
 
     public LazyAdapter(Fragment a, ArrayList<HashMap<String, String>> d) {
@@ -57,21 +63,64 @@ public class LazyAdapter extends BaseAdapter {
 
 
 
+
         final TextView likesNum = (TextView)vi.findViewById(R.id.likesNum);
         final TextView like = (TextView)vi.findViewById(R.id.likes);
         like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (likesNum.getText().toString().equals("Like")) {
+                if (like.getText().toString().equals("Like")) {
                     like.setText("Unlike");
                     likesNum.setText((Integer.parseInt(likesNum.getText().toString()) + 1) + "");
 
                     // like do service
+                    HashMap<String, String> params = new HashMap<String, String>();
+
+                    params.put("uID",uID);
+                    params.put("checkInID", checkinID);
+                    Connection conn = new Connection(params, new ConnectionPostListener() {
+                        @Override
+                        public void doSomething(String result) {
+                            try {
+                                JSONObject reader = new JSONObject(result);
+                                if (reader != null){
+
+                                }
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+                    conn.execute(Constants.like);
                 } else  {
                     like.setText("Like");
                     likesNum.setText((Integer.parseInt(likesNum.getText().toString()) - 1) + "");
 
                     // like undo service
+                    HashMap<String, String> params = new HashMap<String, String>();
+
+                    params.put("uID",uID);
+                    params.put("checkInID", checkinID);
+                    Connection conn = new Connection(params, new ConnectionPostListener() {
+                        @Override
+                        public void doSomething(String result) {
+                            try {
+                                JSONObject reader = new JSONObject(result);
+                                if (reader != null){
+
+                                }
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+                    conn.execute(Constants.unlike);
                 }
             }
         });
@@ -84,6 +133,9 @@ public class LazyAdapter extends BaseAdapter {
         title.setText(dic.get(HomeFragment.DESCRIPTIN));
         artist.setText(dic.get(HomeFragment.USER_NAME));
         duration.setText(dic.get(HomeFragment.Time));
+        uID = dic.get(HomeFragment.uID);
+        checkinID = dic.get(HomeFragment.checkinID);
+
         //likesNum.setText(dic.get(HomeFragment.numLikes));
         //imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
         return vi;

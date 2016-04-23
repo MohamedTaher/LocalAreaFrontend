@@ -12,12 +12,14 @@ public class CheckinModel {
     private int likes;
     private int comments;
     private PlaceModel checkinPlace;
+    private String name;
 
     public CheckinModel() {
 
     }
 
-    public CheckinModel(String description, String date, int placeID, int userID, int id, int likes, int comments, PlaceModel checkinPlace) {
+    public CheckinModel(String description, String date, int placeID, int userID
+            , int id, int likes, int comments, PlaceModel checkinPlace, String name) {
         this.description = description;
         this.date = date;
         this.placeID = placeID;
@@ -26,6 +28,15 @@ public class CheckinModel {
         this.likes = likes;
         this.comments = comments;
         this.checkinPlace = checkinPlace;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {

@@ -58,10 +58,15 @@ public class Home extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.mainFrame, new HomeFragment());
+
+        HomeFragment hf = new HomeFragment();
+        hf.setHome(this);
+        fragment = hf;
+
+        ft.replace(R.id.mainFrame, hf);
 
 
-        fragment = new HomeFragment();
+        fragment = hf;
 
         title = "Home";
 
@@ -127,7 +132,9 @@ public class Home extends AppCompatActivity
         if (id == R.id.nav_home){
             preFragment = fragment;
             stack.add(preFragment);
-            fragment = new HomeFragment();
+            HomeFragment hf = new HomeFragment();
+            hf.setHome(this);
+            fragment = hf;
 
             pretitle = title;
             titles.add(pretitle);
