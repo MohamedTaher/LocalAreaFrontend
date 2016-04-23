@@ -12,12 +12,13 @@ public class CheckinModel {
     private int likes;
     private int comments;
     private PlaceModel checkinPlace;
+    private String uName;
 
     public CheckinModel() {
 
     }
 
-    public CheckinModel(String description, String date, int placeID, int userID, int id, int likes, int comments, PlaceModel checkinPlace) {
+    public CheckinModel(String description, String date, int placeID, int userID, int id, int likes, int comments, PlaceModel checkinPlace, String uName) {
         this.description = description;
         this.date = date;
         this.placeID = placeID;
@@ -26,6 +27,7 @@ public class CheckinModel {
         this.likes = likes;
         this.comments = comments;
         this.checkinPlace = checkinPlace;
+        this.uName = uName;
     }
 
     public String getDescription() {
@@ -90,5 +92,13 @@ public class CheckinModel {
 
     public void setCheckinPlace(PlaceModel checkinPlace) {
         this.checkinPlace = checkinPlace;
+    }
+
+    public String getuName() {
+        return uName;
+    }
+
+    public void setuName(String uName) {
+        this.uName = uName;
     }
 }

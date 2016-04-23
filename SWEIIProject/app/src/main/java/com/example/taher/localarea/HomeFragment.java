@@ -1,10 +1,11 @@
 package com.example.taher.localarea;
 
 
-import android.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,7 @@ public class HomeFragment extends Fragment {
 
 
             // creating new HashMap
-            HashMap<String, String> map = new HashMap<String, String>();
+                HashMap<String, String> map = new HashMap<String, String>();
             map.put(DESCRIPTIN, "i'm happy !!!!!!!!!!!!!!!!!!!!!!!!!!!!!" +
                     "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             map.put(USER_NAME, "Taher");
@@ -82,36 +83,43 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Toast.makeText(getContext(), "row " + position, Toast.LENGTH_LONG).show();
+                //HERE
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ViewCheckin viewcheckin = new ViewCheckin();
+                ft.replace(R.id.mainFrame, viewcheckin);
+                ft.commit();
+                System.out.println("DONE");
             }
         });
 
-        nearest = (RadioButton) rootview.findViewById(R.id.nameRadio);
-        nearest.setChecked(true);
-        nearest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rate.setChecked(false);
-                checkin.setChecked(false);
-            }
-        });
+//        nearest = (RadioButton) rootview.findViewById(R.id.nameRadio);
+//        nearest.setChecked(true);
+//        nearest.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                rate.setChecked(false);
+//                checkin.setChecked(false);
+//            }
+//        });
 
-        rate = (RadioButton) rootview.findViewById(R.id.placeRadio);
-        rate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nearest.setChecked(false);
-                checkin.setChecked(false);
-            }
-        });
+//        rate = (RadioButton) rootview.findViewById(R.id.placeRadio);
+//        rate.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                nearest.setChecked(false);
+//                checkin.setChecked(false);
+//            }
+//        });
 
-        checkin = (RadioButton) rootview.findViewById(R.id.brandRadio);
-        checkin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nearest.setChecked(false);
-                rate.setChecked(false);
-            }
-        });
+//        checkin = (RadioButton) rootview.findViewById(R.id.brandRadio);
+//        checkin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                nearest.setChecked(false);
+//                rate.setChecked(false);
+//            }
+//        });
 
         return rootview;
     }
