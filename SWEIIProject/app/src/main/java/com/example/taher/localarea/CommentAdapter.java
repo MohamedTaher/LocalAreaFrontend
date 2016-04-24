@@ -12,14 +12,14 @@ import android.widget.TextView;
 /**
  * Created by root on 4/23/16.
  */
-public class CommentAdapter extends ArrayAdapter<Comment> {
+public class CommentAdapter extends ArrayAdapter<CommentView> {
 
     private Context context;
     private int resource;
-    Comment[] data = null;
+    CommentView[] data = null;
 
 
-    public CommentAdapter(Context context, int resource, Comment[] objects) {
+    public CommentAdapter(Context context, int resource, CommentView[] objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
@@ -40,7 +40,7 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
         holder.username = (TextView)row.findViewById(R.id.commentUsername);
         holder.comment = (TextView)row.findViewById(R.id.userComment);
 
-        Comment comment = data[position];
+        CommentView comment = data[position];
         holder.username.setText(comment.username);
         holder.comment.setText(comment.comment);
         holder.userImage.setImageResource(comment.userImage);

@@ -28,7 +28,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/checkinmapfragment"
-        android:id="@+id/commentsListView"></ListView>
+        android:id="@+id/commentsListView">
+    </ListView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#0000f4"
+        android:textSize="30dp"
+        android:text="No comments so far!\nBe the first to comment :)"
+        android:id="@+id/NoCommentsView"
+        android:layout_below="@+id/checkinDisc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="59dp" />
 
     <TextView
         android:layout_width="wrap_content"
