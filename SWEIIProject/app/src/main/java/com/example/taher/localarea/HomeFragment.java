@@ -56,6 +56,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
     private void getList(String type)
     {
+        adapter=new LazyAdapter(this, checkinsList);
         HashMap<String, String> params = new HashMap<String, String>();
 
         params.put("userID", home.user.getId() + "");
@@ -64,6 +65,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         Connection conn = new Connection(params, new ConnectionPostListener() {
             @Override
             public void doSomething(String result) {
+                listOfCheckins = new ArrayList<CheckinModel>();
+                checkinsList = new ArrayList<HashMap<String, String>>();
+
                 try {
                     JSONObject reader = new JSONObject(result);
                     if (reader != null){
@@ -114,6 +118,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                     e.printStackTrace();
                 }
 
+                adapter.setData(checkinsList);
+                list.setAdapter(adapter);
+
             }
         });
         conn.execute(Constants.listOfCheckins);
@@ -146,11 +153,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         rate.setOnClickListener(this);
         checkin.setOnClickListener(this);
 
-
         list=(ListView)rootview.findViewById(R.id.list);
+        /*
         // Getting adapter by passing xml data ArrayList
         adapter=new LazyAdapter(this, checkinsList);
-        list.setAdapter(adapter);
+        list.setAdapter(adapter);*/
         // Click event for single list row
         list.setOnItemClickListener(new OnItemClickListener() {
 
@@ -177,8 +184,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        listOfCheckins = new ArrayList<CheckinModel>();
-        checkinsList = new ArrayList<HashMap<String, String>>();
         String type = "";
         switch(v.getId()){
             case R.id.sortByNearest:
@@ -202,11 +207,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             default:
                 return;
         }
+
         getList(type);
         //adapter=new LazyAdapter(this, checkinsList);
 
-        adapter.notifyDataSetChanged();
-        list.setAdapter(adapter);
+
 
     }
 }

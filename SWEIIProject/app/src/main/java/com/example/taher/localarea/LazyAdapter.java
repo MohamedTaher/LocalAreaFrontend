@@ -140,4 +140,8 @@ public class LazyAdapter extends BaseAdapter {
         //imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
         return vi;
     }
+
+    public void setData(ArrayList<HashMap<String, String>> data) {
+        this.data = data;
+    }
 }
