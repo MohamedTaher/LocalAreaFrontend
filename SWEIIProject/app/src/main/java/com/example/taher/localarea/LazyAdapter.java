@@ -27,39 +27,25 @@ public class LazyAdapter extends BaseAdapter {
 
     private Fragment fragment;
     private ArrayList<HashMap<String, String>> data;
-    private ArrayList<CheckinModel> data2;
     private static LayoutInflater inflater=null;
     String uID;
     String checkinID;
     //public ImageLoader imageLoader;
 
-//    public LazyAdapter(Fragment a, ArrayList<HashMap<String, String>> d) {
-//        fragment = a;
-//        data = d;
-//        Context context = fragment.getContext();
-//        inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        //imageLoader=new ImageLoader(activity.getApplicationContext());
-//    }
-
-
-
-    public LazyAdapter(Fragment a, ArrayList<CheckinModel> d) {
+    public LazyAdapter(Fragment a, ArrayList<HashMap<String, String>> d) {
         fragment = a;
-        data2 = d;
+        data = d;
         Context context = fragment.getContext();
         inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //imageLoader=new ImageLoader(activity.getApplicationContext());
     }
 
-//    public int getCount() {
-//        return data.size();
-//    }
     public int getCount() {
-        return data2.size();
+        return data.size();
     }
 
     public Object getItem(int position) {
-        return data2.get(position);
+        return position;
     }
 
     public long getItemId(int position) {
@@ -140,26 +126,22 @@ public class LazyAdapter extends BaseAdapter {
         });
         //ImageView thumb_image=(ImageView)vi.findViewById(R.id.list_image); // thumb image
 
-//        HashMap<String, String> dic = new HashMap<String, String>();
-//        dic = data.get(position);
-
-        CheckinModel checkin = data2.get(position);
+        HashMap<String, String> dic = new HashMap<String, String>();
+        dic = data.get(position);
 
         // Setting all values in listview
-//        title.setText(dic.get(HomeFragment.DESCRIPTIN));
-//        artist.setText(dic.get(HomeFragment.USER_NAME));
-//        duration.setText(dic.get(HomeFragment.Time));
-//        uID = dic.get(HomeFragment.uID);
-//        checkinID = dic.get(HomeFragment.checkinID);
-
-        title.setText(checkin.getDescription());
-        artist.setText(checkin.getuName());
-        duration.setText(checkin.getDate());
-        uID = checkin.getUserID() + "";
-        checkinID = checkin.getId() + "";
+        title.setText(dic.get(HomeFragment.DESCRIPTIN));
+        artist.setText(dic.get(HomeFragment.USER_NAME));
+        duration.setText(dic.get(HomeFragment.Time));
+        uID = dic.get(HomeFragment.uID);
+        checkinID = dic.get(HomeFragment.checkinID);
 
         //likesNum.setText(dic.get(HomeFragment.numLikes));
         //imageLoader.DisplayImage(song.get(CustomizedListView.KEY_THUMB_URL), thumb_image);
         return vi;
+    }
+
+    public void setData(ArrayList<HashMap<String, String>> data) {
+        this.data = data;
     }
 }

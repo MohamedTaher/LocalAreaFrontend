@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -27,6 +28,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 public class Connection extends AsyncTask<String, String, String> {
     private HashMap<String, String> mData = null;// post data
     private ConnectionPostListener connectionPostListener;
+    private Fragment f = null;
 
     /**
      * constructor
@@ -84,6 +86,16 @@ public class Connection extends AsyncTask<String, String, String> {
     protected void onPostExecute(String result) {
         // something...
         connectionPostListener.doSomething(result);
+    }
+
+    public void setF(Fragment f)
+    {
+        this.f = f;
+    }
+
+    public Fragment getF()
+    {
+        return f;
     }
 }
 

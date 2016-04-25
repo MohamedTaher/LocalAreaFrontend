@@ -86,9 +86,16 @@ public class Home extends AppCompatActivity
             super.onBackPressed();
         }*/
         if (!stack.empty()){
-        Fragment temp = stack.pop();
-        if (temp != null)
-        replaceFragment(titles.pop(),temp);
+            Fragment temp = stack.pop();
+            if (temp != null){
+                String temp_title = titles.pop();
+                if (stack.empty())
+                {
+                    fragment = temp;
+                    title = temp_title;
+                }
+                replaceFragment(temp_title,temp, false);
+            }
         } else
             super.onBackPressed();
     }
@@ -115,13 +122,39 @@ public class Home extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public void replaceFragment (String title, Fragment fragment)
+    public void replaceFragment (String title, Fragment fragment, boolean back)
     {
         setTitle(title);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.mainFrame, fragment);
         ft.commit();
     }
+
+    public void replaceFragment (String title, Fragment fragment)
+    {
+
+        preFragment = this.fragment;
+        stack.add(preFragment);
+        this.fragment = fragment;
+
+        pretitle = this.title;
+        titles.add(pretitle);
+        this.title = title;
+
+
+        setTitle(title);
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.mainFrame, fragment);
+        ft.commit();
+
+        /*
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.mainFrame, fragment);
+        ft.commit();*/
+    }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -130,54 +163,25 @@ public class Home extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home){
-            preFragment = fragment;
-            stack.add(preFragment);
+
             HomeFragment hf = new HomeFragment();
             hf.setHome(this);
-            fragment = hf;
-
-            pretitle = title;
-            titles.add(pretitle);
-            title = "Home";
-            replaceFragment("Home", fragment);
+            replaceFragment("Home", hf);
 
         }else if (id == R.id.nav_username) {
-            preFragment = fragment;
-            stack.add(preFragment);
-            fragment = new AccountFragment();
 
-            pretitle = title;
-            titles.add(pretitle);
-            title = user.getName();
-
-            replaceFragment(user.getName(), fragment);
+            replaceFragment(user.getName(), new AccountFragment());
 
         } else if (id == R.id.nav_followers) {
             FollowersFragment search = new FollowersFragment();
             search.setSorceUser(user);
             search.setParent(this);
-            preFragment = fragment;
-            stack.add(preFragment);
-            fragment = search;
-
-            pretitle = title;
-            titles.add(pretitle);
-            title = "Followers";
-
             replaceFragment("Followers", search);
 
         } else if (id == R.id.nav_search) {
             SearchFragment search = new SearchFragment();
             search.setSorceUser(user);
             search.setParent(this);
-            preFragment = fragment;
-            stack.add(preFragment);
-            fragment = search;
-
-            pretitle = title;
-            titles.add(pretitle);
-            title = "Search";
-
             replaceFragment("Search", search);
 
         } else if (id == R.id.nav_single) { //add new place

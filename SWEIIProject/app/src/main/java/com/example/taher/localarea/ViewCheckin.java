@@ -38,7 +38,7 @@ public class ViewCheckin extends Fragment {
     private TextView checkinName;
     private TextView checkinDescription;
     private ListView commentsListView;
-    private View view;
+    private static View view = null;
     private TextView NoCommentsView;
     private FragmentManager fm;
     private CommentAdapter commentsAdapter;
@@ -52,11 +52,11 @@ public class ViewCheckin extends Fragment {
     }
 
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.viewcheckinlayout, container, false);
+        if (view == null)
+            view = inflater.inflate(R.layout.viewcheckinlayout, container, false);
         checkinName = (TextView) view.findViewById(R.id.checkinName);
         checkinDescription = (TextView) view.findViewById(R.id.checkinDisc);
         fm  = getActivity().getFragmentManager();
