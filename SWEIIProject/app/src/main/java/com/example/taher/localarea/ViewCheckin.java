@@ -41,6 +41,7 @@ public class ViewCheckin extends Fragment {
     private View view;
     private TextView NoCommentsView;
     private FragmentManager fm;
+    private CommentAdapter commentsAdapter;
 //    private ArrayList<CommentView> comments = new ArrayList<CommentView>();
     public  CheckinModel getCheckin() {
         return checkin;
@@ -90,9 +91,10 @@ public class ViewCheckin extends Fragment {
                             comment.comment = jComment.getString("desc");
                             comment.id = jComment.getInt("id");
                             comment.username = jComment.getString("userName");
-//                            comments.add(comment);
                             comments[i] = comment;
                         }
+                        commentsAdapter = new CommentAdapter(getContext(), view.getId(), comments);
+                        commentsListView.setAdapter(commentsAdapter);
                     }
                     else
                         Toast.makeText(getContext(), "Empty List", Toast.LENGTH_LONG).show();
@@ -104,35 +106,27 @@ public class ViewCheckin extends Fragment {
             }
         });
 
-//        for(int i = 0;i < 10;i++) {
-//            comments[i] = new Comment();
-//            comments[i].comment = "This is comment #" + i;
-//            comments[i].username = "User#" + i;
-//            comments[i].userImage = R.drawable.username_icon;
+//        String s = "";
+//        try {
+//            s = con.execute(Constants.getCommentsForCheckin).get();
+//            con.onPostExecute(s);
+            con.execute(Constants.getCommentsForCheckin);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
 //        }
-        ////////////////////////////////
-        String s = "";
-        try {
-            s = con.execute(Constants.getCommentsForCheckin).get();
-            con.onPostExecute(s);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
         //اللون مش عايز يطلع
         //هتشل يا ناس اللون مش بيطلع لا من هنا ولا من الفيو
-        
+
         NoCommentsView.setTextColor(Color.parseColor("#FF0000F4"));
         commentsListView.setEmptyView(view.findViewById(R.id.NoCommentsView));
-        CommentAdapter commentsAdapter = new CommentAdapter(getContext(), view.getId(), comments);
-        commentsListView.setAdapter(commentsAdapter);
         PlaceModel checkinPlace = checkin.getCheckinPlace();
         LatLng placeLatLng = new LatLng(checkinPlace.getLat(), checkinPlace.getLng());
         CameraUpdate camUpdate = CameraUpdateFactory.newLatLngZoom(placeLatLng, 14);
 //        CameraUpdate camUpdate = CameraUpdateFactory.newLatLng(placeLatLng);
         gmap.addMarker(new MarkerOptions().position(placeLatLng).title(checkinPlace.getName()));
-//        gmap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        gmap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         gmap.animateCamera(camUpdate);
         return view;
     }
