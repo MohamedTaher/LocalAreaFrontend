@@ -40,9 +40,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
     private ListView searchList;
     private ArrayAdapter<String> adapter;
     private ArrayList<UserModel> users;
+    private ArrayList<PlaceModel> places;
     private ArrayList<String> list;
-
-    private boolean e = true;
 
     public UserModel getSorceUser() {
         return sorceUser;
@@ -54,9 +53,9 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
 
     private void nameSearch() { // fill array list name ,id ,email
 
-        users.clear();
-        list.clear();
-
+        searchList.setAdapter(null);
+        list = new ArrayList<String>();
+        users = new ArrayList<UserModel>();
 
         HashMap<String, String> params = new HashMap<String, String>();
 
@@ -82,11 +81,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                             users.add(temp);
                             list.add(jUserData.getString("name"));
                         }
-                        e = false;
                     }
                     else {
-                        list.add("Empty List");
-                        e = true;
                         Toast.makeText(getContext(), "Not Found",
                                 Toast.LENGTH_LONG).show();
                     }
@@ -97,10 +93,79 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                     e.printStackTrace();
                 }
 
+                adapter = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_list_item_1, list);
+                searchList.setAdapter(adapter);
+
+                adapter.notifyDataSetChanged();
+
             }
         });
         conn.execute(Constants.SEARCH);
+/*
+        adapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_list_item_1, list);
+        searchList.setAdapter(adapter);*/
+/*
+        adapter = new ArrayAdapter<String>(this.rootview.getContext(),
+                android.R.layout.simple_list_item_1, list);
+        searchList.setAdapter(adapter);
 
+        adapter.notifyDataSetChanged();*/
+
+    }
+
+    private void placeSearch(){
+        searchList.setAdapter(null);
+        list = new ArrayList<String>();
+        places = new ArrayList<PlaceModel>();
+
+        HashMap<String, String> params = new HashMap<String, String>();
+
+        params.put("name",searchTxt.getText().toString());
+
+        Connection conn = new Connection(params, new ConnectionPostListener() {
+            @Override
+            public void doSomething(String result) {
+                try {
+                    JSONObject reader = new JSONObject(result);
+                    if (reader != null){
+                        JSONArray jUsers = reader.getJSONArray("list");
+                        for (int i = 0; i < jUsers.length(); i++)
+                        {
+                            JSONObject jUserData = jUsers.getJSONObject(i);
+                            PlaceModel temp = new PlaceModel(jUserData.getInt("id")
+                                    ,jUserData.getString("name")
+                                    ,jUserData.getString("description")
+                                    ,jUserData.getDouble("lng")
+                                    ,jUserData.getDouble("lat")
+                                    ,jUserData.getInt("userID")
+                            );
+
+                            places.add(temp);
+                            list.add(jUserData.getString("name"));
+                        }
+                    }
+                    else {
+                        Toast.makeText(getContext(), "Not Found",
+                                Toast.LENGTH_LONG).show();
+                    }
+
+
+                } catch (JSONException e) {
+                    Toast.makeText(getContext(), "Network Error", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+
+                adapter = new ArrayAdapter<String>(getContext(),
+                        android.R.layout.simple_list_item_1, list);
+                searchList.setAdapter(adapter);
+
+                adapter.notifyDataSetChanged();
+
+            }
+        });
+        conn.execute(Constants.searchPlaceByName);
     }
 
     public void setParent(Home home)
@@ -141,12 +206,19 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                         /*Toast.makeText(getContext(),
                                 list.get(position), Toast.LENGTH_LONG)
                                 .show();*/
-
-                        UserModel wanted = users.get(position);
-                        AnotherAccountFragment anotherUser = new AnotherAccountFragment();
-                        anotherUser.setUser(sorceUser,wanted);
-                        Fragment f = anotherUser;
-                        parant.replaceFragment(wanted.getName(),f);
+                        if (name.isChecked()){
+                            UserModel wanted = users.get(position);
+                            AnotherAccountFragment anotherUser = new AnotherAccountFragment();
+                            anotherUser.setUser(sorceUser,wanted);
+                            Fragment f = anotherUser;
+                            parant.replaceFragment(wanted.getName(),f);
+                        } else if (place.isChecked()){
+                            int id  = places.get(position).getId();
+                            /*
+                            placeFragment _place = new placeFragment();
+                            _place.setPlaceID(id);
+                            parant.replaceFragment(places.get(position).getName(),_place);*/
+                        }
 
                     }
 
@@ -156,7 +228,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
 
         users = new ArrayList<UserModel>();
         list = new ArrayList<String>();
-        list.add("Empty List");
 
         adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, list);
@@ -190,8 +261,9 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                             "Enter text to search on it", Toast.LENGTH_LONG)
                             .show();
                 } else {
-                    nameSearch();
-                    if (e == false) adapter.notifyDataSetChanged();
+                    if (name.isChecked()) nameSearch();
+                    else if (place.isChecked()) placeSearch();
+                    else;
                 }
                 break;
 

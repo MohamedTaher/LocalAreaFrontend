@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/createCheckin"
+        android:title="Checkin"
+        app:showAsAction="always"
+        android:orderInCategory="100"
+        android:icon="@android:drawable/ic_dialog_map" />
+
+
+    <item android:id="@+id/history"
+    android:title="history"
+    app:showAsAction="always"
+    android:orderInCategory="100"
+    android:icon="@android:drawable/ic_menu_agenda" />
+
+
+
+    <item android:id="@+id/notification"
+
+        android:title="Notification"
+        app:showAsAction="always"
+        android:orderInCategory="100"
+        android:icon="@android:drawable/ic_popup_reminder"
+        />
+
+    <!--android:actionLayout="@layout/badge_layout"-->
 </menu>

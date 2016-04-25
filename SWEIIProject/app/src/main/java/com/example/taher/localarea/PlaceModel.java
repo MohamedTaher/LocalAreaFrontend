@@ -17,6 +17,15 @@ public class PlaceModel {
 
     }
 
+    public PlaceModel(int id, String name, String description, double lng, double lat, int userID) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.lng = lng;
+        this.lat = lat;
+        this.userID = userID;
+    }
+
     public PlaceModel(int id, String name, String description, double lng, double lat, int userID, int numberOfCheckins, int rateSum, int userNum) {
         this.id = id;
         this.name = name;

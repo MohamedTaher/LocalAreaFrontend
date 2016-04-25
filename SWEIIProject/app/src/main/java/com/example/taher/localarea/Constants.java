@@ -20,5 +20,5 @@ public abstract class Constants {
     public static final String like = "http://wep-localarea.rhcloud.com/FCISquare/rest/Like";
     public static final String unlike = "http://wep-localarea.rhcloud.com/FCISquare/rest/UnLike";
     public static final String getCommentsForCheckin = "http://wep-localarea.rhcloud.com/FCISquare/rest/getCommentsForCheckin";
-
+    public static final String searchPlaceByName = "http://wep-localarea.rhcloud.com/FCISquare/rest/searchPlaceByName";
 }
