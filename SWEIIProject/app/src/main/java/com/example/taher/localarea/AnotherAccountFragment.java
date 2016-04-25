@@ -41,7 +41,6 @@ public class AnotherAccountFragment extends Fragment implements View.OnClickList
     private Location mCurrentLocation;
     private FragmentManager fm;
     private MapFragment map;
-    private MapFragment frag;
     private GoogleMap g_map;
     private final int[] MAP_TYPES = { GoogleMap.MAP_TYPE_SATELLITE,
             GoogleMap.MAP_TYPE_NORMAL,

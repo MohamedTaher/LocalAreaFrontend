@@ -143,10 +143,18 @@ public class Home extends AppCompatActivity
 
 
         setTitle(title);
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.mainFrame, fragment);
         ft.commit();
+
+        /*
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.mainFrame, fragment);
+        ft.commit();*/
     }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -158,12 +166,11 @@ public class Home extends AppCompatActivity
 
             HomeFragment hf = new HomeFragment();
             hf.setHome(this);
-            replaceFragment("Home", fragment);
+            replaceFragment("Home", hf);
 
         }else if (id == R.id.nav_username) {
-            fragment = new AccountFragment();
 
-            replaceFragment(user.getName(), fragment);
+            replaceFragment(user.getName(), new AccountFragment());
 
         } else if (id == R.id.nav_followers) {
             FollowersFragment search = new FollowersFragment();

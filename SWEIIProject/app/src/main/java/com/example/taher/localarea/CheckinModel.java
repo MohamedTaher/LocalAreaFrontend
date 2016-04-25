@@ -12,14 +12,22 @@ public class CheckinModel {
     private int likes;
     private int comments;
     private PlaceModel checkinPlace;
-    private String name;
+//<<<<<<< HEAD
+    private String uName;
+//=======
+//    private String name;
+//>>>>>>> 0cb60ec889290a39f27156fb09235515b43a1329
 
     public CheckinModel() {
 
     }
 
-    public CheckinModel(String description, String date, int placeID, int userID
-            , int id, int likes, int comments, PlaceModel checkinPlace, String name) {
+//<<<<<<< HEAD
+    public CheckinModel(String description, String date, int placeID, int userID, int id, int likes, int comments, PlaceModel checkinPlace, String uName) {
+//=======
+//    public CheckinModel(String description, String date, int placeID, int userID
+//            , int id, int likes, int comments, PlaceModel checkinPlace, String name) {
+//>>>>>>> 0cb60ec889290a39f27156fb09235515b43a1329
         this.description = description;
         this.date = date;
         this.placeID = placeID;
@@ -28,15 +36,19 @@ public class CheckinModel {
         this.likes = likes;
         this.comments = comments;
         this.checkinPlace = checkinPlace;
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+//<<<<<<< HEAD
+        this.uName = uName;
+//=======
+//        this.name = name;
+//    }
+//
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//>>>>>>> 0cb60ec889290a39f27156fb09235515b43a1329
     }
 
     public String getDescription() {
@@ -101,5 +113,13 @@ public class CheckinModel {
 
     public void setCheckinPlace(PlaceModel checkinPlace) {
         this.checkinPlace = checkinPlace;
+    }
+
+    public String getuName() {
+        return uName;
+    }
+
+    public void setuName(String uName) {
+        this.uName = uName;
     }
 }
