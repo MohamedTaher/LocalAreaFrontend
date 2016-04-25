@@ -163,7 +163,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(getContext(), "row " + position, Toast.LENGTH_LONG).show();
+//                Toast.makeText(getContext(), "row " + position, Toast.LENGTH_LONG).show();
                 //HERE
 
                 ViewCheckin viewcheckin = new ViewCheckin();
