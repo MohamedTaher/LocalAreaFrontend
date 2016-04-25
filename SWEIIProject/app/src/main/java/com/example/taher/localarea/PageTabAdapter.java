@@ -15,9 +15,6 @@ public class PageTabAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int index) {
-
-
-
         return null;
     }
 

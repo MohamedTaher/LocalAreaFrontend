@@ -30,6 +30,12 @@ public class LazyAdapter extends BaseAdapter {
     private static LayoutInflater inflater=null;
     String uID;
     String checkinID;
+
+    TextView title;
+    TextView artist;
+    TextView duration;
+    TextView likesNum;
+    TextView like;
     //public ImageLoader imageLoader;
 
     public LazyAdapter(Fragment a, ArrayList<HashMap<String, String>> d) {
@@ -57,15 +63,14 @@ public class LazyAdapter extends BaseAdapter {
         if(convertView==null)
             vi = inflater.inflate(R.layout.list_row, null);
 
-        TextView title = (TextView)vi.findViewById(R.id.title); // title
-        TextView artist = (TextView)vi.findViewById(R.id.artist); // name
-        TextView duration = (TextView)vi.findViewById(R.id.duration); // duration
+        title = (TextView)vi.findViewById(R.id.title); // title
+        artist = (TextView)vi.findViewById(R.id.artist); // name
+        duration = (TextView)vi.findViewById(R.id.duration); // duration
+        likesNum = (TextView)vi.findViewById(R.id.likesNum);
+        like = (TextView)vi.findViewById(R.id.likes);
 
+        
 
-
-
-        final TextView likesNum = (TextView)vi.findViewById(R.id.likesNum);
-        final TextView like = (TextView)vi.findViewById(R.id.likes);
         like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,6 +138,7 @@ public class LazyAdapter extends BaseAdapter {
         title.setText(dic.get(HomeFragment.DESCRIPTIN));
         artist.setText(dic.get(HomeFragment.USER_NAME));
         duration.setText(dic.get(HomeFragment.Time));
+        likesNum.setText(dic.get(HomeFragment.numLikes));
         uID = dic.get(HomeFragment.uID);
         checkinID = dic.get(HomeFragment.checkinID);
 
