@@ -26,4 +26,5 @@ public abstract class Constants {
     public static final String savePlace = "http://wep-localarea.rhcloud.com/FCISquare/rest/savePlace";
     public static final String getSavedPlacesList = "http://wep-localarea.rhcloud.com/FCISquare/rest/getSavedPlacesList";
     public static final String ratePlace = "http://wep-localarea.rhcloud.com/FCISquare/rest/ratePlace";
+    public static final String addPlace = "http://wep-localarea.rhcloud.com/FCISquare/rest/addPlace";
 }

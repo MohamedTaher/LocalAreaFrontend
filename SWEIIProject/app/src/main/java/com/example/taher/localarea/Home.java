@@ -223,8 +223,9 @@ public class Home extends AppCompatActivity
             replaceFragment("Search", search);
 
         } else if (id == R.id.nav_single) { //add new place
-
-
+            PlaceAddView placeAdd = new PlaceAddView();
+            placeAdd.setHome(this);
+            replaceFragment("Add New Place", placeAdd);
         } else if (id == R.id.nav_group) { // my places
             PlaceList placeList = new PlaceList();
             placeList.setHome(this);

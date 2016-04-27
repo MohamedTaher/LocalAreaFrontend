@@ -20,7 +20,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
  */
 public class PlaceInfoFrag extends Fragment {
     private PlaceModel place;
-    static private View view;
+    private static View view;
     private GoogleMap gmap;
     private TextView placeName;
     private TextView placeDesc;
