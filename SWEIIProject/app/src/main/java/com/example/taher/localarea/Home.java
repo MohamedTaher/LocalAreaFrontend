@@ -226,7 +226,9 @@ public class Home extends AppCompatActivity
 
 
         } else if (id == R.id.nav_group) { // my places
-
+            PlaceList placeList = new PlaceList();
+            placeList.setHome(this);
+            replaceFragment("My Places", placeList);
         } else if (id == R.id.nav_logout) {
             stack.clear();
             titles.clear();

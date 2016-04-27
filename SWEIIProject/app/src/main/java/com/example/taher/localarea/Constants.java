@@ -23,4 +23,7 @@ public abstract class Constants {
     public static final String comment = "http://wep-localarea.rhcloud.com/FCISquare/rest/Comment";
     public static final String getPlaceByID = "http://wep-localarea.rhcloud.com/FCISquare/rest/getPlaceByID";
     public static final String createCheckin = "http://wep-localarea.rhcloud.com/FCISquare/rest/createCheckin";
+    public static final String savePlace = "http://wep-localarea.rhcloud.com/FCISquare/rest/savePlace";
+    public static final String getSavedPlacesList = "http://wep-localarea.rhcloud.com/FCISquare/rest/getSavedPlacesList";
+    public static final String ratePlace = "http://wep-localarea.rhcloud.com/FCISquare/rest/ratePlace";
 }

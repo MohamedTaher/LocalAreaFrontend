@@ -60,7 +60,7 @@
         android:id="@+id/PlaceOptionsFragRate"
         android:layout_below="@+id/PlaceOptionsFragSaveButton"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp" />
 
     <RatingBar

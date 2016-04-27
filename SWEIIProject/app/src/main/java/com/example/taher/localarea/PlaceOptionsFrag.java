@@ -40,6 +40,7 @@ public class PlaceOptionsFrag extends Fragment {
         checkinDesc = (EditText) view.findViewById(R.id.PlaceOptionsFragDesc);
         rate = (RatingBar) view.findViewById(R.id.PlaceOptionsFragRateBar);
         rate.setNumStars(5);
+        rate.setStepSize((float)1.0);
 
         save.setOnClickListener(new saveActionListener());
         makeCheckin.setOnClickListener(new checkinActionListener());
@@ -57,14 +58,53 @@ public class PlaceOptionsFrag extends Fragment {
     private class saveActionListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+            HashMap<String, String> params = new HashMap<String, String>();
+            params.put("userID", Home.user.getId()+"");
+            params.put("placeID", place.getId()+"");
+            Connection con = new Connection(params, new SaveActionPostListener());
+            con.execute(Constants.savePlace);
+        }
+    }
 
+
+
+
+    private class SaveActionPostListener implements ConnectionPostListener{
+
+        @Override
+        public void doSomething(String result) {
+            try {
+                JSONObject jres = new JSONObject(result);
+                Toast.makeText(getContext(), jres.getString("status"), Toast.LENGTH_SHORT).show();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     private class rateActionListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+            float rating = rate.getRating();
+            HashMap<String, String> params = new HashMap<>();
+            Toast.makeText(getContext(), rating + "", Toast.LENGTH_LONG).show();
+            params.put("id", place.getId()+"");
+            params.put("rate", rating+"");
+            Connection con = new Connection(params, new RateActionPostListener());
+            con.execute(Constants.ratePlace);
+        }
+    }
 
+
+    private class RateActionPostListener implements ConnectionPostListener {
+        @Override
+        public void doSomething(String result) {
+            try {
+                JSONObject jres = new JSONObject(result);
+                Toast.makeText(getContext(), jres.getString("status"), Toast.LENGTH_SHORT).show();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 

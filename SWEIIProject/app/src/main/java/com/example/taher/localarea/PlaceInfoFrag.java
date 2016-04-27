@@ -20,7 +20,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
  */
 public class PlaceInfoFrag extends Fragment {
     private PlaceModel place;
-    private View view;
+    static private View view;
     private GoogleMap gmap;
     private TextView placeName;
     private TextView placeDesc;
@@ -30,19 +30,31 @@ public class PlaceInfoFrag extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if(view == null)
+        if(view == null) {
             view = inflater.inflate(R.layout.place_info_frag, container, false);
-
-        gmap = ((MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.PlaceInfoFragMap)).getMap();
-        placeName = (TextView) view.findViewById(R.id.PlaceInfoFragPlaceName);
-        placeDesc = (TextView) view.findViewById(R.id.PlaceInfoFragDesc);
-        checkins = (TextView) view.findViewById(R.id.PlaceInfoFragCheckins);
-        placeRate = (RatingBar) view.findViewById(R.id.PlaceInfoFragRate);
+            initView();
+        }
+        initView();
         return view;
+    }
+
+    private void initView() {
+        if(gmap == null)
+        gmap = ((MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.PlaceInfoFragMap)).getMap();
+        if(placeName == null)
+        placeName = (TextView) view.findViewById(R.id.PlaceInfoFragPlaceName);
+        if(placeDesc == null)
+        placeDesc = (TextView) view.findViewById(R.id.PlaceInfoFragDesc);
+        if(checkins == null)
+        checkins = (TextView) view.findViewById(R.id.PlaceInfoFragCheckins);
+        if(placeRate == null)
+        placeRate = (RatingBar) view.findViewById(R.id.PlaceInfoFragRate);
     }
 
     public void initiate(PlaceModel place) {
         this.place = place;
+        if(view != null)
+        initView();
         placeName.setText(place.getName());
         placeDesc.setText(place.getDescription());
         checkins.setText(place.getNumberOfCheckins() + "");
