@@ -104,6 +104,29 @@ public class PlaceModel {
         this.userID = userID;
     }
 
+    public int getNumberOfCheckins() {
+        return numberOfCheckins;
+    }
+
+    public void setNumberOfCheckins(int numberOfCheckins) {
+        this.numberOfCheckins = numberOfCheckins;
+    }
+
+    public int getRateSum() {
+        return rateSum;
+    }
+
+    public void setRateSum(int rateSum) {
+        this.rateSum = rateSum;
+    }
+
+    public int getUserNum() {
+        return userNum;
+    }
+
+    public void setUserNum(int userNum) {
+        this.userNum = userNum;
+    }
 
 
 
