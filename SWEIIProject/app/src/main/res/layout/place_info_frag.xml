@@ -32,7 +32,7 @@
         android:layout_below="@+id/PlaceInfoFragCheckins"
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp"
-        android:layout_above="@+id/ratingBar"
+        android:layout_above="@+id/PlaceInfoFragRate"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="10dp" />
 

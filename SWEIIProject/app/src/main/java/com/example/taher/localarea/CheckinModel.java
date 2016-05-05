@@ -104,8 +104,7 @@ public class CheckinModel {
         this.uName = uName;
     }
 
-    public PlaceModel getPlace()
-    {
-        return checkinPlace;
+    public PlaceModel getPlace() {
+        return this.checkinPlace;
     }
 }
