@@ -9,8 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 /**
  * Created by root on 4/23/16.
  */
@@ -18,19 +16,10 @@ public class CommentAdapter extends ArrayAdapter<CommentView> {
 
     private Context context;
     private int resource;
-//    CommentView[] data = null;
-    ArrayList<CommentView> data = null;
+    CommentView[] data = null;
 
 
-//    public CommentAdapter(Context context, int resource, CommentView[] objects) {
-//        super(context, resource, objects);
-//        this.context = context;
-//        this.resource = resource;
-//        this.data = objects;
-//    }
-
-
-    public CommentAdapter(Context context, int resource, ArrayList<CommentView> objects) {
+    public CommentAdapter(Context context, int resource, CommentView[] objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
@@ -51,8 +40,7 @@ public class CommentAdapter extends ArrayAdapter<CommentView> {
         holder.username = (TextView)row.findViewById(R.id.commentUsername);
         holder.comment = (TextView)row.findViewById(R.id.userComment);
 
-//        CommentView comment = data[position];
-        CommentView comment = data.get(position);
+        CommentView comment = data[position];
         holder.username.setText(comment.username);
         holder.comment.setText(comment.comment);
         holder.userImage.setImageResource(comment.userImage);
