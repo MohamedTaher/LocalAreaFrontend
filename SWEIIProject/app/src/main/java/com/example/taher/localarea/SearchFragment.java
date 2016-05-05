@@ -1,5 +1,6 @@
 package com.example.taher.localarea;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -16,6 +18,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.taher.localarea.R;
+import com.google.android.gms.location.places.internal.PlaceLikelihoodEntity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -141,6 +144,13 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                                     ,jUserData.getDouble("lat")
                                     ,jUserData.getInt("userID")
                             );
+//                            PlaceModel temp = new PlaceModel();
+//                            temp.setId(jUserData.getInt("id"));
+//                            temp.setName(jUserData.getString("name"));
+//                            temp.setDescription(jUserData.getString("description"));
+//                            temp.setLat(jUserData.getDouble("lat"));
+//                            temp.setLng(jUserData.getDouble("lng"));
+//                            temp.setUserID(jUserData.getInt("userID"));
 
                             places.add(temp);
                             list.add(jUserData.getString("name"));
@@ -218,6 +228,9 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                             placeFragment _place = new placeFragment();
                             _place.setPlaceID(id);
                             parant.replaceFragment(places.get(position).getName(),_place);*/
+                            PlaceView place = new PlaceView();
+                            place.getPlace().setId(id);
+                            parant.replaceFragment("placetst", place);
                         }
 
                     }
@@ -261,9 +274,13 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
                             "Enter text to search on it", Toast.LENGTH_LONG)
                             .show();
                 } else {
+                    View keyboard = getActivity().getCurrentFocus();
+                    if(keyboard != null) {
+                        InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    }
                     if (name.isChecked()) nameSearch();
                     else if (place.isChecked()) placeSearch();
-                    else;
                 }
                 break;
 

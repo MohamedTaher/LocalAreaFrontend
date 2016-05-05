@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:name="com.example.taher.localarea.gmap"
+        tools:layout="@layout/gmap_fragment"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/PlaceInfoFragMap">
+    </fragment>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/PlaceInfoFragPlaceName"
+        android:layout_below="@+id/PlaceInfoFragMap"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="PlaceName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/PlaceInfoFragDesc"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/PlaceInfoFragCheckins"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:layout_above="@+id/ratingBar"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Check-ins:"
+        android:id="@+id/PlaceInfoFragCheckins"
+        android:layout_below="@+id/PlaceInfoFragPlaceName"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/PlaceInfoFragRate"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp" />
+
+</RelativeLayout>

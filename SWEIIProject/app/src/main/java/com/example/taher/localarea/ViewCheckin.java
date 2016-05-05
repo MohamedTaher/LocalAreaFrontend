@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 /**
- * Created by root on 4/21/16.
+ * Created by Kareem on 4/21/16.
  */
 public class ViewCheckin extends Fragment {
     private CheckinModel checkin;
@@ -66,7 +66,6 @@ public class ViewCheckin extends Fragment {
 
         checkinName.setText(checkin.getuName());
         checkinDescription.setText(checkin.getDescription());
-        //get comments from database instead of this standard initialization
         HashMap<String, String> params = new HashMap<String, String>();
 //        params.put("uID", checkin.getUserID()+"");
         params.put("checkinID", checkin.getId()+"");
