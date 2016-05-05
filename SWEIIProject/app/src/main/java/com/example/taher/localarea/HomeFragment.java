@@ -148,7 +148,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         checkin = (RadioButton) rootview.findViewById(R.id.sortByNumCheckins);
 
         nearest.setChecked(true);
-        getList("3");
+
 
 
         nearest.setOnClickListener(this);
@@ -156,8 +156,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         checkin.setOnClickListener(this);
 
         list=(ListView)rootview.findViewById(R.id.list);
-
-        // Click event for single list row
+        getList("3");
+        // Click event for single list row/*
         list.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
@@ -170,12 +170,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 viewcheckin.setCheckin(listOfCheckins.get(position));
                 Fragment temp = viewcheckin;
                 home.replaceFragment("Home",temp);
-                /*
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.mainFrame, viewcheckin);
-                ft.commit();*/
-
 
                 System.out.println("DONE");
             }
