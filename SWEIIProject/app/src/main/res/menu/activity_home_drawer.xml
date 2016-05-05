@@ -8,19 +8,17 @@
             android:title="Username" />
         <item android:id="@+id/nav_followers" android:icon="@drawable/friends"
             android:title="Followers" />
-        <item android:id="@+id/nav_places" android:icon="@drawable/places"
-            android:title="Places" />
         <item android:id="@+id/nav_search" android:icon="@drawable/search"
             android:title="Search" />
 
     </group>
 
-    <item android:title="Massages">
+    <item android:title="Places">
         <menu>
-            <item android:id="@+id/nav_single" android:icon="@drawable/single_massage"
-                android:title="Single" />
-            <item android:id="@+id/nav_group" android:icon="@drawable/group_massage"
-                android:title="Group" />
+            <item android:id="@+id/nav_single" android:icon="@drawable/place_icon"
+                android:title="Add New Place" />
+            <item android:id="@+id/nav_group" android:icon="@drawable/places"
+                android:title="My Places" />
         </menu>
     </item>
     <item android:title="">

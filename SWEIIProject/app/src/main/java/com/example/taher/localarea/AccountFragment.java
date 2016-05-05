@@ -104,7 +104,6 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         lng = new String();
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         stopGettingPosition = true;
-
         //Setting the update position button listener and the progress bar
         updatePositionProgress = (ProgressBar) rootview.findViewById(R.id.updatePositionProgress);
         updatePositionProgress.setVisibility(View.INVISIBLE);

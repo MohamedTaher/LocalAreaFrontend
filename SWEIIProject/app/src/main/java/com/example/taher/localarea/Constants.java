@@ -12,4 +12,19 @@ public abstract class Constants {
     public static final String MAPKEY2 = "AIzaSyA4rUdwwkjeUZViuXiRfOMkWY1uA1L3xVY";
     public static final String SEARCH = "http://wep-localarea.rhcloud.com/FCISquare/rest/getuserbyname";
     public static final String getFollowers = "http://wep-localarea.rhcloud.com/FCISquare/rest/getfollwers";
+    public static final String followOrNo = "http://wep-localarea.rhcloud.com/FCISquare/rest/checkFollow";
+    public static final String follow="http://wep-localarea.rhcloud.com/FCISquare/rest/followUser";
+    public static final String unfollow="http://wep-localarea.rhcloud.com/FCISquare/rest/unfollowUser";
+    public static final String listOfCheckins = "http://wep-localarea.rhcloud.com/FCISquare/rest/getCheckinsFromUser";
+    public static final String like = "http://wep-localarea.rhcloud.com/FCISquare/rest/Like";
+    public static final String unlike = "http://wep-localarea.rhcloud.com/FCISquare/rest/UnLike";
+    public static final String getCommentsForCheckin = "http://wep-localarea.rhcloud.com/FCISquare/rest/getCommentsForCheckin";
+    public static final String searchPlaceByName = "http://wep-localarea.rhcloud.com/FCISquare/rest/searchPlaceByName";
+    public static final String comment = "http://wep-localarea.rhcloud.com/FCISquare/rest/Comment";
+    public static final String getPlaceByID = "http://wep-localarea.rhcloud.com/FCISquare/rest/getPlaceByID";
+    public static final String createCheckin = "http://wep-localarea.rhcloud.com/FCISquare/rest/createCheckin";
+    public static final String savePlace = "http://wep-localarea.rhcloud.com/FCISquare/rest/savePlace";
+    public static final String getSavedPlacesList = "http://wep-localarea.rhcloud.com/FCISquare/rest/getSavedPlacesList";
+    public static final String ratePlace = "http://wep-localarea.rhcloud.com/FCISquare/rest/ratePlace";
+    public static final String addPlace = "http://wep-localarea.rhcloud.com/FCISquare/rest/addPlace";
 }

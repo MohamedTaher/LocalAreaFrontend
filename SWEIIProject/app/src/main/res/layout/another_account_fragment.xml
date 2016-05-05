@@ -13,12 +13,22 @@
         android:text="Get Last Location"
         android:layout_below="@+id/textView4"
         android:layout_alignEnd="@+id/textView4" />
-
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Follow"
+        android:id="@+id/followButton"
+        android:layout_gravity="right|top"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/frameLayout" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/getUserLastLocation">
+        android:layout_below="@+id/getUserLastLocation"
+        android:id="@+id/frameLayout">
         <fragment
             android:id="@+id/mapfragment"
             android:layout_width="match_parent"
