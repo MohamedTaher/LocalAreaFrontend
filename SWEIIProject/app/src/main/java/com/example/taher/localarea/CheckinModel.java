@@ -103,9 +103,4 @@ public class CheckinModel {
     public void setuName(String uName) {
         this.uName = uName;
     }
-
-    public PlaceModel getPlace()
-    {
-        return checkinPlace;
-    }
 }
