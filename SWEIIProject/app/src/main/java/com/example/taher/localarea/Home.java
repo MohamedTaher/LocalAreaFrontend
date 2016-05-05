@@ -152,20 +152,10 @@ public class Home extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == notification) {
-            NotificationFragment notifiy = new NotificationFragment();
-            notifiy.setHome(this);
-            notifiy.setUserID(user.getId());
-            replaceFragment("Notifications", notifiy);
-            //Toast.makeText(getApplicationContext(), "Notification", Toast.LENGTH_LONG).show();
+
+            Toast.makeText(getApplicationContext(), "Notification", Toast.LENGTH_LONG).show();
             return true;
         } else if (id == R.id.createCheckin) {
-
-            return true;
-        } else if (id == R.id.history) {
-            HistoryActionFragment historyActionFragment = new HistoryActionFragment();
-            historyActionFragment.setHome(this);
-            historyActionFragment.setUserID(user.getId());
-            replaceFragment("History Actions",historyActionFragment);
             return true;
         }
 

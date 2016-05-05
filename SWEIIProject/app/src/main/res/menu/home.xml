@@ -10,10 +10,10 @@
 
 
     <item android:id="@+id/history"
-        android:title="history"
-        app:showAsAction="always"
-        android:orderInCategory="100"
-        android:icon="@android:drawable/stat_notify_chat" />
+    android:title="history"
+    app:showAsAction="always"
+    android:orderInCategory="100"
+    android:icon="@android:drawable/ic_menu_agenda" />
 
 
 

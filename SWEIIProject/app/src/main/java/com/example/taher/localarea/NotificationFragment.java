@@ -36,14 +36,13 @@ public class NotificationFragment extends Fragment {
     public void setUserID(int userID) {
         this.userID = userID;
     }
-    public void setHome(Home home){ this.home = home; }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootview = inflater.inflate(R.layout.notification_fragment, container, false);
 
-        notifyList = (ListView) rootview.findViewById(R.id.notifyList);
+        notifyList = (ListView) rootview.findViewById(R.id.searchList);
         notifyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1,
@@ -70,38 +69,29 @@ public class NotificationFragment extends Fragment {
                 try {
                     JSONObject reader = new JSONObject(result);
                     if (reader != null){
-                        JSONArray jitems = reader.getJSONArray("checkins");
-                        for (int i = 0; i < jitems.length(); i++)
+                        JSONArray jUsers = reader.getJSONArray("list");
+                        for (int i = 0; i < jUsers.length(); i++)
                         {
-                            JSONObject jCheckinData = jitems.getJSONObject(i);
-                            CheckinModel checkin = new CheckinModel(
-                                    jCheckinData.getString("description"),
-                                    jCheckinData.getString("date"),
-                                    Integer.parseInt(jCheckinData.getString("placeID")),
-                                    Integer.parseInt(jCheckinData.getString("userID")),
-                                    Integer.parseInt(jCheckinData.getString("id")),
-                                    Integer.parseInt(jCheckinData.getString("likes")),
-                                    Integer.parseInt(jCheckinData.getString("comments")),
-                                    new PlaceModel(
-                                            Integer.parseInt(jCheckinData.getString("pid")),
-                                            jCheckinData.getString("pname"),
-                                            jCheckinData.getString("pdescription"),
-                                            Double.parseDouble(jCheckinData.getString("plng")),
-                                            Double.parseDouble(jCheckinData.getString("plat")),
-                                            Integer.parseInt(jCheckinData.getString("puserid")),
-                                            Integer.parseInt(jCheckinData.getString("pnumberofcheckins")),
-                                            Integer.parseInt(jCheckinData.getString("prateSum")),
-                                            Integer.parseInt(jCheckinData.getString("pusernum"))
-                                    )
-                                    ,jCheckinData.getString("uname")
-                            );
+                            JSONObject jUserData = jUsers.getJSONObject(i);/*
+                            UserModel temp = new UserModel(jUserData.getInt("id")
+                                    ,jUserData.getString("name")
+                                    ,jUserData.getString("email")
+                                    ,"-1"
+                                    ,jUserData.getDouble("long")
+                                    ,jUserData.getDouble("lat"));
 
-                            notifyItem.add(checkin);
-                            list.add(jCheckinData.getString("userNameAction") + " comment at your checkin - "+ checkin.getCheckinPlace().getName() +" - ");///user commented
+                            users.add(temp);
+                            list.add(jUserData.getString("name"));*/
                         }
                     }
+                    else {
+                        Toast.makeText(getContext(), "Not Found",
+                                Toast.LENGTH_LONG).show();
+                    }
+
 
                 } catch (JSONException e) {
+                    Toast.makeText(getContext(), "Network Error", Toast.LENGTH_LONG).show();
                     e.printStackTrace();
                 }
 
@@ -113,7 +103,7 @@ public class NotificationFragment extends Fragment {
 
             }
         });
-        conn.execute(Constants.getCommentNotification);
+        conn.execute(Constants.SEARCH);
 
         try {
             conn.get();
@@ -123,69 +113,6 @@ public class NotificationFragment extends Fragment {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-
-
-        Connection _conn = new Connection(params, new ConnectionPostListener() {
-            @Override
-            public void doSomething(String result) {
-                try {
-                    JSONObject reader = new JSONObject(result);
-                    if (reader != null){
-                        JSONArray jitems = reader.getJSONArray("checkins");
-                        for (int i = 0; i < jitems.length(); i++)
-                        {
-                            JSONObject jCheckinData = jitems.getJSONObject(i);
-                            CheckinModel checkin = new CheckinModel(
-                                    jCheckinData.getString("description"),
-                                    jCheckinData.getString("date"),
-                                    Integer.parseInt(jCheckinData.getString("placeID")),
-                                    Integer.parseInt(jCheckinData.getString("userID")),
-                                    Integer.parseInt(jCheckinData.getString("id")),
-                                    Integer.parseInt(jCheckinData.getString("likes")),
-                                    Integer.parseInt(jCheckinData.getString("comments")),
-                                    new PlaceModel(
-                                            Integer.parseInt(jCheckinData.getString("pid")),
-                                            jCheckinData.getString("pname"),
-                                            jCheckinData.getString("pdescription"),
-                                            Double.parseDouble(jCheckinData.getString("plng")),
-                                            Double.parseDouble(jCheckinData.getString("plat")),
-                                            Integer.parseInt(jCheckinData.getString("puserid")),
-                                            Integer.parseInt(jCheckinData.getString("pnumberofcheckins")),
-                                            Integer.parseInt(jCheckinData.getString("prateSum")),
-                                            Integer.parseInt(jCheckinData.getString("pusernum"))
-                                    )
-                                    ,jCheckinData.getString("uname")
-                            );
-
-                            notifyItem.add(checkin);
-                            list.add(jCheckinData.getString("userNameAction") + " like at your checkin");///user commented
-                        }
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                adapter = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_list_item_1, list);
-                notifyList.setAdapter(adapter);
-
-                adapter.notifyDataSetChanged();
-
-            }
-        });
-        _conn.execute(Constants.getLikeNotification);
-
-        try {
-            _conn.get();
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-
         return rootview;
     }
 
