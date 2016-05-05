@@ -20,6 +20,11 @@ public abstract class Constants {
     public static final String unlike = "http://wep-localarea.rhcloud.com/FCISquare/rest/UnLike";
     public static final String getCommentsForCheckin = "http://wep-localarea.rhcloud.com/FCISquare/rest/getCommentsForCheckin";
     public static final String searchPlaceByName = "http://wep-localarea.rhcloud.com/FCISquare/rest/searchPlaceByName";
+    public static final String getCommentNotification = "http://wep-localarea.rhcloud.com/FCISquare/rest/getMyCommentsNotification";
+    public static final String getLikeNotification = "http://wep-localarea.rhcloud.com/FCISquare/rest/getMyLikesNotification";
+    public static final String checkLike = "http://wep-localarea.rhcloud.com/FCISquare/rest/checkLike";
+    public static final String getMyActions = "http://wep-localarea.rhcloud.com/FCISquare/rest/getMyActions";
+    public static final String UndoActions = "http://wep-localarea.rhcloud.com/FCISquare/rest/UndoActions";
     public static final String comment = "http://wep-localarea.rhcloud.com/FCISquare/rest/Comment";
     public static final String getPlaceByID = "http://wep-localarea.rhcloud.com/FCISquare/rest/getPlaceByID";
     public static final String createCheckin = "http://wep-localarea.rhcloud.com/FCISquare/rest/createCheckin";
@@ -27,4 +32,5 @@ public abstract class Constants {
     public static final String getSavedPlacesList = "http://wep-localarea.rhcloud.com/FCISquare/rest/getSavedPlacesList";
     public static final String ratePlace = "http://wep-localarea.rhcloud.com/FCISquare/rest/ratePlace";
     public static final String addPlace = "http://wep-localarea.rhcloud.com/FCISquare/rest/addPlace";
+
 }
