@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <fragment
+        android:layout_alignParentRight="true"
+        android:id="@+id/checkinmapfragment"
+        android:layout_width="204dp"
+        android:layout_height="219dp"
+        class="com.example.taher.localarea.gmap"
+        tools:layout="@layout/gmap_fragment"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/checkinName"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkinmapfragment"
+        android:layout_above="@+id/commentTextBox"
+        android:id="@+id/commentsListView">
+    </ListView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="#0000f4"
+        android:textSize="30dp"
+        android:text="No comments so far!\nBe the first to comment :)"
+        android:id="@+id/NoCommentsView"
+        android:layout_marginTop="49dp"
+        android:layout_below="@+id/checkinDisc"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/checkinDisc"
+        android:layout_below="@+id/checkinName"
+        android:layout_alignStart="@+id/checkinName"
+        android:layout_alignBottom="@+id/checkinmapfragment"
+        android:layout_toStartOf="@+id/checkinmapfragment" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/commentTextBox"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/sendCommentButton"
+        android:layout_alignParentBottom="true" />
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="New Button"
+        android:id="@+id/sendCommentButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:background="@mipmap/send"
+        android:layout_alignTop="@+id/commentTextBox" />
+</RelativeLayout>
