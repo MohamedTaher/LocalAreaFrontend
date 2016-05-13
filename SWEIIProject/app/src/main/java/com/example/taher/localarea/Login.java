@@ -90,7 +90,6 @@ public class Login extends Activity {
         forget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //soon ^_^
             }
         });
     }
