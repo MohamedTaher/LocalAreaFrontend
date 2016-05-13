@@ -43,13 +43,10 @@ public class Login extends Activity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(_uname.length() == 0 ||_upassword.length() == 0)
-                {
+                if(_uname.length() == 0 ||_upassword.length() == 0) {
                     Toast.makeText(getApplicationContext(), "Enter username and password"
                             , Toast.LENGTH_LONG).show();
-                }
-                else
-                {
+                } else {
                     HashMap<String, String> params = new HashMap<String, String>();
 
                     params.put("pass",_upassword.getText().toString());
