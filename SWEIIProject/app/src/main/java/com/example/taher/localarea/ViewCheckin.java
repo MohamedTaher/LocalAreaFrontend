@@ -38,6 +38,7 @@ import java.util.concurrent.ExecutionException;
  * Created by Kareem on 4/21/16.
  */
 public class ViewCheckin extends Fragment {
+    //The variables representing elements in the view in fragment
     private CheckinModel checkin;
     private MapFragment mapfrag;
     private GoogleMap gmap;
@@ -55,7 +56,7 @@ public class ViewCheckin extends Fragment {
 
 
 
-
+    //Setters and getters
     public  CheckinModel getCheckin() {
         return checkin;
     }
@@ -69,32 +70,41 @@ public class ViewCheckin extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (view == null)
             view = inflater.inflate(R.layout.viewcheckinlayout, container, false);
+            
+        //Getting references to elements from the view, and setting these references
         checkinName = (TextView) view.findViewById(R.id.checkinName);
         checkinDescription = (TextView) view.findViewById(R.id.checkinDisc);
         commentTextBox = (EditText) view.findViewById(R.id.commentTextBox);
         commentTextBox.setHint("Enter a comment..");
         sendCommentButton = (ImageButton) view.findViewById(R.id.sendCommentButton);
+        
+        //Setting the map to view it on the fragment
         fm  = getActivity().getFragmentManager();
         mapfrag = (MapFragment) fm.findFragmentById(R.id.checkinmapfragment);
         gmap = ((MapFragment)fm.findFragmentById(R.id.checkinmapfragment)).getMap();
+        
+        //Setting the list of comments
         commentsListView = (ListView) view.findViewById(R.id.commentsListView);
         NoCommentsView = (TextView) view.findViewById(R.id.NoCommentsView);
         checkinName.setText(checkin.getuName());
         checkinDescription.setText(checkin.getDescription());
+        
+        //Preparing connection data to call the service and retrieve data from database
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("checkinID", checkin.getId()+"");
         Connection con = new Connection(params, new FetchComments());
         con.execute(Constants.getCommentsForCheckin);
 
 
-        //اللون مش عايز يطلع
-        //هتشل يا ناس اللون مش بيطلع لا من هنا ولا من الفيو
-
+        //Color is not working, always displays the default color
         NoCommentsView.setTextColor(Color.parseColor("#FF0000F4"));
         commentsListView.setEmptyView(view.findViewById(R.id.NoCommentsView));
+        
+        //Now the map is working, redirect the map to the place's location and adding a marker on it
         PlaceModel checkinPlace = checkin.getCheckinPlace();
         LatLng placeLatLng = new LatLng(checkinPlace.getLat(), checkinPlace.getLng());
         CameraUpdate camUpdate = CameraUpdateFactory.newLatLngZoom(placeLatLng, 14);
+        //If want no map zoom, then uncomment this line and comment the line right above this one
 //        CameraUpdate camUpdate = CameraUpdateFactory.newLatLng(placeLatLng);
         gmap.addMarker(new MarkerOptions().position(placeLatLng).title(checkinPlace.getName()));
         gmap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -104,7 +114,7 @@ public class ViewCheckin extends Fragment {
     }
 
 
-
+    //The action done after the data as been fetched from the database, parsing these data and filling it to the view
     private class FetchComments implements ConnectionPostListener {
         @Override
         public void doSomething(String result) {
@@ -135,6 +145,7 @@ public class ViewCheckin extends Fragment {
         }
     }
 
+    //When the user makes a comment and presses the button, the function will send the comment to the DB
     private class MakeCommentPostListener implements ConnectionPostListener {
         @Override
         public void doSomething(String result) {
