@@ -43,13 +43,10 @@ public class Login extends Activity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(_uname.length() == 0 ||_upassword.length() == 0)
-                {
+                if(_uname.length() == 0 ||_upassword.length() == 0) {
                     Toast.makeText(getApplicationContext(), "Enter username and password"
                             , Toast.LENGTH_LONG).show();
-                }
-                else
-                {
+                } else {
                     HashMap<String, String> params = new HashMap<String, String>();
 
                     params.put("pass",_upassword.getText().toString());
@@ -74,16 +71,8 @@ public class Login extends Activity {
                                     Intent intent = new Intent(getApplicationContext(), Home.class);
                                     intent.putExtra("userModel",  user);
                                     startActivityForResult(intent, 0);
-
-                                  /*  Toast.makeText(getApplicationContext(), reader.getString("name") + " before"
-                                , Toast.LENGTH_LONG).show();*/
-                                }
-                                else
+                                } else
                                     Toast.makeText(getApplicationContext(), "Network Error", Toast.LENGTH_LONG).show();
-                                //if the same username
-                                //verify email
-
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
