@@ -51,7 +51,8 @@ public class gmap
 
 
 
-
+    //Un-comment these functions and implement them if needed to do something after the map has been created.
+    /*
     @Override
     public void onConnected(Bundle bundle) {
 
@@ -86,4 +87,5 @@ public class gmap
     public boolean onMarkerClick(Marker marker) {
         return false;
     }
+    */
 }
