@@ -47,6 +47,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     static final String numLikes = "numLikes";
     static final String uID = "uID";
     static final String checkinID = "checkinID";
+    static final String sortType1 = "1";
+    static final String sortType2 = "2";
+    static final String sortType3 = "3";
     //static final String KEY_THUMB_URL = "thumb_url";
 
     ListView list;
@@ -148,7 +151,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         checkin = (RadioButton) rootview.findViewById(R.id.sortByNumCheckins);
 
         nearest.setChecked(true);
-        getList("3");
+        getList(sortType3);
 
 
         nearest.setOnClickListener(this);
@@ -198,19 +201,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         String type = "";
         switch(v.getId()){
             case R.id.sortByNearest:
-                type = "3";
+                type = sortType3;
                 rate.setChecked(false);
                 checkin.setChecked(false);
                 break;
 
             case R.id.sortByNumCheckins:
-                type = "1";
+                type = sortType2;
                 nearest.setChecked(false);
                 rate.setChecked(false);
                 break;
 
             case R.id.sortByRate:
-                type = "2";
+                type = sortType1;
                 nearest.setChecked(false);
                 checkin.setChecked(false);
                 break;
