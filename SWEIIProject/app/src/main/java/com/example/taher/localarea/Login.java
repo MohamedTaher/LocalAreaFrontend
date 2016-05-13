@@ -75,14 +75,9 @@ public class Login extends Activity {
                                     intent.putExtra("userModel",  user);
                                     startActivityForResult(intent, 0);
 
-                                  /*  Toast.makeText(getApplicationContext(), reader.getString("name") + " before"
-                                , Toast.LENGTH_LONG).show();*/
                                 }
                                 else
                                     Toast.makeText(getApplicationContext(), "Network Error", Toast.LENGTH_LONG).show();
-                                //if the same username
-                                //verify email
-
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -101,7 +96,6 @@ public class Login extends Activity {
         forget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //soon ^_^
             }
         });
     }
