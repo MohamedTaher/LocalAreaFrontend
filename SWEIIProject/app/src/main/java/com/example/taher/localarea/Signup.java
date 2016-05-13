@@ -25,10 +25,6 @@ public class Signup extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
         username = (EditText) findViewById(R.id.username_signup);
         email = (EditText) findViewById(R.id.email_signup);
         password = (EditText) findViewById(R.id.password_signup);
@@ -71,10 +67,6 @@ public class Signup extends Activity {
                                     }
                                     else
                                         Toast.makeText(getApplicationContext(), "Network Error", Toast.LENGTH_LONG).show();
-                                    //if the same username
-                                    //verify email
-
-
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
