@@ -26,9 +26,6 @@ public class Signup extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-
         username = (EditText) findViewById(R.id.username_signup);
         email = (EditText) findViewById(R.id.email_signup);
         password = (EditText) findViewById(R.id.password_signup);
