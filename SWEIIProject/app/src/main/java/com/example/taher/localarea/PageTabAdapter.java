@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 public class PageTabAdapter extends FragmentPagerAdapter {
+    private int numberOfTabs = 3;
 
     public PageTabAdapter(FragmentManager fm) {
         super(fm);
@@ -21,7 +22,7 @@ public class PageTabAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // get item count - equal to number of tabs
-        return 3;
+        return numberOfTabs;
     }
 
 }
